@@ -1,0 +1,120 @@
+Enter password: *****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 4
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database sse;
+ERROR 1007 (HY000): Can't create database 'sse'; database exists
+mysql> use sse;
+Database changed
+mysql> create table employee(surname varchar(10),age int,salary int,da int));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> create table employee(surname varchar(10),age int(20),salary int(20),da int(20));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc employee;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| surname | varchar(10) | YES  |     | NULL    |       |
+| age     | int(20)     | YES  |     | NULL    |       |
+| salary  | int(20)     | YES  |     | NULL    |       |
+| da      | int(20)     | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (0.02 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_sse |
++---------------+
+| employee      |
++---------------+
+1 row in set (0.01 sec)
+
+mysql> desc Tables_in_sse
+    ->
+    ->
+    -> decs tables
+    -> decs Tables_in_sse
+    ->
+    ->
+    -> desc Tables_in_sse;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'tables
+decs Tables_in_sse
+
+
+desc Tables_in_sse' at line 4
+mysql> desc Tables_in_sse;
+ERROR 1146 (42S02): Table 'sse.tables_in_sse' doesn't exist
+mysql> desc surname;
+ERROR 1146 (42S02): Table 'sse.surname' doesn't exist
+mysql> insert into employee values ('sanjana',18,20000,1);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select *from employee;
++---------+------+--------+------+
+| surname | age  | salary | da   |
++---------+------+--------+------+
+| sanjana |   18 |  20000 |    1 |
++---------+------+--------+------+
+1 row in set (0.01 sec)
+
+mysql> alter table employee add designation int;
+Query OK, 1 row affected (0.01 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> desc employee
+    -> desc employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc employee' at line 2
+mysql> desc employee;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| surname     | varchar(10) | YES  |     | NULL    |       |
+| age         | int(20)     | YES  |     | NULL    |       |
+| salary      | int(20)     | YES  |     | NULL    |       |
+| da          | int(20)     | YES  |     | NULL    |       |
+| designation | int(11)     | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> alter table employee drop da;
+Query OK, 1 row affected (0.02 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> desc employee;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| surname     | varchar(10) | YES  |     | NULL    |       |
+| age         | int(20)     | YES  |     | NULL    |       |
+| salary      | int(20)     | YES  |     | NULL    |       |
+| designation | int(11)     | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_sse |
++---------------+
+| employee      |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee;
++---------+------+--------+-------------+
+| surname | age  | salary | designation |
++---------+------+--------+-------------+
+| sanjana |   18 |  20000 |        NULL |
++---------+------+--------+-------------+
+1 row in set (0.00 sec)
+
+mysql>
