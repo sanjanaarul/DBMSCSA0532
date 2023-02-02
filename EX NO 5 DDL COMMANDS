@@ -1,0 +1,125 @@
+Enter password: *****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 16
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use sse;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_sse |
++---------------+
+| employee      |
+| manager       |
+| patients      |
+| staff         |
++---------------+
+4 rows in set (0.00 sec)
+
+mysql> select*from manager;
+Empty set (0.00 sec)
+
+mysql> select* from manager;
+Empty set (0.00 sec)
+
+mysql> desc manager;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| manager_name | varchar(11) | YES  |     | NULL    |       |
+| age          | int(30)     | YES  | UNI | NULL    |       |
+| salary       | int(30)     | NO   | PRI | 0       |       |
+| experience   | int(10)     | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> insert into manager values("sanjana",18,30000,5);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into manager values("janu",19,20000,2);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into manager values("jothi",20,25000,3);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into manager values("ashok",21,27000,4);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select* from manager;
++--------------+------+--------+------------+
+| manager_name | age  | salary | experience |
++--------------+------+--------+------------+
+| janu         |   19 |  20000 |          2 |
+| jothi        |   20 |  25000 |          3 |
+| ashok        |   21 |  27000 |          4 |
+| sanjana      |   18 |  30000 |          5 |
++--------------+------+--------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select* from manager where salary=30000;
++--------------+------+--------+------------+
+| manager_name | age  | salary | experience |
++--------------+------+--------+------------+
+| sanjana      |   18 |  30000 |          5 |
++--------------+------+--------+------------+
+1 row in set (0.00 sec)
+
+mysql> select* from manager where name="sanjana";
+ERROR 1054 (42S22): Unknown column 'name' in 'where clause'
+mysql> select* from manager where name="sanjana";
+ERROR 1054 (42S22): Unknown column 'name' in 'where clause'
+mysql>
+mysql>
+mysql>
+mysql> select* from manager_name where name="sanjana";
+ERROR 1146 (42S02): Table 'sse.manager_name' doesn't exist
+mysql> select* from manager where manager_name="sanjana";
++--------------+------+--------+------------+
+| manager_name | age  | salary | experience |
++--------------+------+--------+------------+
+| sanjana      |   18 |  30000 |          5 |
++--------------+------+--------+------------+
+1 row in set (0.00 sec)
+
+mysql> alter table manager add address varchar(30);
+Query OK, 4 rows affected (0.02 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> update manager set address="balaji nagar" where name="sanjana";
+ERROR 1054 (42S22): Unknown column 'name' in 'where clause'
+mysql> update manager set address="balaji nagar" where manager_name="sanjana";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update manager set address="ram nagar" where manager_name="jothi";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update manager set address="voc nagar" where manager_name="janu";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update manager set address="t nagar" where manager_name="ashok";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select* from manager;
++--------------+------+--------+------------+--------------+
+| manager_name | age  | salary | experience | address      |
++--------------+------+--------+------------+--------------+
+| janu         |   19 |  20000 |          2 | voc nagar    |
+| jothi        |   20 |  25000 |          3 | ram nagar    |
+| ashok        |   21 |  27000 |          4 | t nagar      |
+| sanjana      |   18 |  30000 |          5 | balaji nagar |
++--------------+------+--------+------------+--------------+
+4 rows in set (0.00 sec)
+
+mysql>
